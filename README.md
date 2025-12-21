@@ -27,6 +27,11 @@ Core language categories
 - Core / Syntax: #comment, #import, #import.css, #import.js, #import.lib
   - Purpose: annotate source, include external assets, extend the language with libraries or runtime modules.
 - Text & Content: #text (and heading variants like #text.h1 .. #text.h6)
+
+ex: #title.h1 text="Welcome to GES+"
+#button text="Click Me" onclick="alert('Hello!')"
+#canvas width=400 height=300
+
   - Purpose: place textual content into the UI with optional semantic styling or role modifiers.
 - Layout & Structure: #div, #section, #header, #footer, #nav, #main, #aside, #grid, #flex, #row, #column, #panel, #window
   - Purpose: describe layout containers and structural regions of the UI. Containers accept child directives that nest content or further containers.
@@ -37,12 +42,25 @@ Core language categories
 - Inputs & Forms: #input, #textarea, #select, #option, #form, #form.submit, #form.reset
   - Purpose: collect user data, validate, and submit to APIs or local handlers.
 - UI Controls: #button, #icon, #link, #card, #modal, #toast, #tooltip
+
+ex: #state name="count" value=0
+#title.h2 text="Counter Example"
+#paragraph text="Click the button to increase the counter."
+#button text="Increase" onclick="count = count + 1"
+#paragraph text="Current count: {count}"
+
   - Purpose: interactive elements used for user actions and feedback.
 - Variables & Data: #var, #const, #let, #calc
   - Purpose: declare and compute values within the source; variables feed templates, state, and expressions.
 - Logic & Control Flow: #if, #else, #elif, #switch, #case, #default
   - Purpose: conditional rendering and branching for dynamic content.
 - Iteration & Flow Control: #loop, #while, #do, #break, #continue
+
+ex: #div.class="container"
+    #image src="logo.png" alt="GES+ Logo" width=200
+    #video src="intro.mp4" autoplay=true loop=true
+    #audio src="background.mp3" autoplay=true
+
   - Purpose: generate repeated content or perform iterations that affect rendered output.
 - Events & Lifecycle: #on load, #on click, #on submit, #on input, #on change, #on hover, #on focus, #on blur, #on scroll, #on resize, #on keydown, #on keyup, #on keypress
   - Purpose: attach handlers to element or global events, connect behavior to user interaction and lifecycle moments.
@@ -52,28 +70,78 @@ Core language categories
   - Purpose: local persistence (e.g., browser storage layers) for simple application data.
 - State Management: #state.create, #state.set, #state.get, #state.watch, #state.reset
   - Purpose: reactive state objects that drive reactivity and automatic UI updates.
+ 
+ex: #canvas id="game" width=800 height=600
+#sprite id="player" src="player.png" x=100 y=100
+#sprite id="enemy" src="enemy.png" x=400 y=300
+#onupdate code="player.x += 1"
+
 - Components & Composition: #component, #use, #slot, #props
   - Purpose: encapsulate UI+logic, parameterize via props, expose slots for composition.
 - Router & Navigation: #router.page, #router.go, #router.back, #router.forward, #redirect
+
+ex: #api name="getUsers" url="https://jsonplaceholder.typicode.com/users" method="GET"
+#list from="getUsers" item="user"
+    #listitem text="{user.name} — {user.email}"
+
   - Purpose: single-page app routing primitives to declare pages and navigation actions.
 - Networking & APIs: #api, #api.get, #api.post, #api.put, #api.patch, #api.delete, #fetch, #fetch.config, #headers
   - Purpose: describe remote requests and mapping of responses into state or components.
 - Cloud & Backend Integration: #cloud.init, #cloud.auth, #cloud.logout, #cloud.save, #cloud.load, #cloud.update, #cloud.delete, #cloud.query, #cloud.listen, #cloud.upload, #cloud.download
+
+
+ex: #tabs id="mainTabs"
+    #tab title="Home"
+        #paragraph text="Welcome to the home tab."
+    #tab title="About"
+        #paragraph text="This is the about section."
+    #tab title="Contact"
+        #paragraph text="Contact us at contact@example.com"
+
+
   - Purpose: higher-level cloud operations, abstracting authentication, CRUD, real-time listeners, and file storage.
 - Authentication & Authorization: #auth.guard, #auth.role, #permission
   - Purpose: declare gated areas, role checks, and security constraints at the UI or API level.
 - File & Device I/O: #file.open, #file.read, #file.write, #file.upload, #file.download, #file.delete
+
+ex: #form id="signupForm" onsubmit="validateForm()"
+    #input type="text" name="username" placeholder="Enter username"
+    #input type="email" name="email" placeholder="Enter email"
+    #input type="password" name="password" placeholder="Enter password"
+    #button type="submit" text="Sign Up"
+
   - Purpose: file interactions surfaced to the app for import/export and persistence.
 - Media Recording & Device: #media.record, #media.play, #media.stop, #camera.open, #mic.open, #device.info, #device.vibrate
   - Purpose: integrate device capabilities like camera, microphone, vibration, and capture workflows.
 - Real-time & Sockets: #socket.connect, #socket.disconnect, #socket.send, #socket.listen
   - Purpose: real-time messaging and socket-driven features.
 - Security & Crypto: #crypto.hash, #crypto.encrypt, #crypto.decrypt, #crypto.random
+
+
+ex: #button text="Open Modal" onclick="showModal('infoModal')"
+#modal id="infoModal" title="Information"
+    #paragraph text="This is a modal dialog in GES+."
+    #button text="Close" onclick="hideModal('infoModal')"
+    
+ex: #carousel id="imageSlider" interval=3000
+    #slide src="slide1.jpg" caption="First Slide"
+    #slide src="slide2.jpg" caption="Second Slide"
+    #slide src="slide3.jpg" caption="Third Slide"
+
+
   - Purpose: client-side cryptographic operations for verification, encryption, and randomness.
 - Concurrency: #worker.run, #worker.terminate, #thread.spawn
   - Purpose: spawn background workers for heavy computation or parallel tasks.
 - AI & ML: #ai.init, #ai.model, #ai.train, #ai.predict, #ai.learn, #ai.respond
   - Purpose: integrate on-device or hosted AI models and prediction workflows.
+ 
+ex: #state name="time" value="00:00:00"
+#title.h2 text="Current Time"
+#paragraph text="{time}"
+#onupdate interval=1000 code="time = new Date().toLocaleTimeString()"
+
+ex: 
+
 - Game & Simulation (GESPlay+): #entity, #sprite, #shape, #move, #rotate, #scale, #gravity, #collision, #weapon, #enemy, #npc, #player, #level, #scene, #camera.follow, #physics.enable, #sound.play, #sound.stop
   - Purpose: domain-specific directives for creating interactive games and simulations.
 
@@ -183,6 +251,29 @@ Command index (overview, text-only list of common directives)
 - Workers & Threads: #worker.run, #worker.terminate, #thread.spawn
 - AI: #ai.init, #ai.model, #ai.train, #ai.predict, #ai.learn, #ai.respond
 - Game / GESPlay+: #entity, #sprite, #shape, #move, #rotate, #scale, #gravity, #collision, #weapon, #enemy, #npc, #player, #level, #scene, #camera.follow, #physics.enable, #sound.play, #sound.stop
+
+
+ex: #2d.make type="game" genre="platformer" editable=true editMode="one-time" mode="offline"
+
+#canvas id="gameCanvas" width=1024 height=576 background="#87CEEB"
+
+#sprite id="player" src="player.png" x=100 y=400 width=48 height=48
+#sprite id="ground" src="ground.png" x=0 y=528 width=1024 height=48
+#sprite id="enemy" src="enemy.png" x=600 y=480 width=48 height=48
+
+#physics gravity=9.8 friction=0.8
+
+#control target="player" left="moveLeft()" right="moveRight()" jump="jump()"
+
+#onedit.once
+    #place sprite="enemy" x=800 y=480
+    #place sprite="ground" x=300 y=528 width=200 height=48
+
+#onupdate
+    code="if (player.x > 1000) { alert('Level Complete!'); }"
+
+
+
 - Tooling: #editor, #terminal, #compiler, #build, #run, #debug, #log
 
 Frequently asked (concise)
@@ -197,4 +288,4 @@ Next steps for adopters
 - Use imports to add tooling or third-party integrations as needed.
 - Explore game features in the GESPlay+ subset when building interactive scenes.
 
-This documentation is a textual reference intended to guide authors, tool builders, and integrators working with GES+. It focuses on concepts, directives, and recommended usage patterns; for concrete examples, editor tooling, and runtime-specific behaviors consult the compiler and runtime documentation or generated AST and tokens from the toolchain.
+This documentation is a textual reference intended to guide authors, tool builders, and integrators working with GES+. It focuses on concepts, directives, and recommended usage patterns; for concrete examples, editor tooling, and runtime-specific behaviors consult the compiler and runtime documentation or generated AST and tokens from the toolchain and the compiler has gemini in it that will make coding with ges easier and if you want to make other version of ges+ tell me in youtube and search in youtube: ges+ world first channel that will appear on you that is it channel
