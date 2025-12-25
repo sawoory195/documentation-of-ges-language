@@ -4,7 +4,7 @@ GES+ — Language Reference & Documentation (text only)
 Overview
 - GES+ is a declarative, line-oriented markup/programming language designed to describe user interfaces, media, interactions, state, and lightweight application logic. It compiles to a runnable HTML+JS preview and produces an AST and token stream for tooling.
 - Target uses: rapid UI prototyping, embedded UI descriptions, lightweight app scaffolding, simple games and media scenes, and teaching/experimentation with a single-file, command-first syntax.
-
+-it costs 1.89 mb per 10 thousand local code in ges
 Design goals
 - Human-readable, predictable, and concise: commands are expressed as prefixed directives that describe elements and behavior.
 - Composable: small building blocks (components, state, events) combine to produce dynamic UIs.
